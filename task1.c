@@ -69,6 +69,14 @@ struct Node *atnode(struct Node *head,struct Node *prevnode,int value)
 
 
 }
+//deleting the first elements 
+struct Node *deletefirst(struct Node *head){
+    struct Node  *ptr;
+    ptr=head;
+    head=head->next;
+    free(ptr);
+    return head;
+}
 int main()
 {
     struct Node *head, *one, *two, *three, *four;
@@ -116,4 +124,6 @@ int main()
     scanf("%d",&node);
     head=atnode(head,three,node);
     printvalue(head);
+    deletefirst(head);
+      printvalue(head);
 }
