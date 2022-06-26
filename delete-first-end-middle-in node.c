@@ -13,6 +13,24 @@ struct Node *deletefirst(struct Node *head){
     free(ptr);
     return head;
 }
+
+//delete at any node you want
+struct Node *deleteatany(struct Node *head,int index)
+{
+    struct Node *ptr;
+    ptr=head;
+    int i=0;
+    while (i!=index-1)
+    {
+      ptr=ptr->next;
+      i++;
+    }
+    struct Node *q;
+    q=p->next;
+    p->next=q->next;
+    free(q);
+    return head;
+}
 //ptinting The value
 void printvalue(struct Node *p)
 {
@@ -48,5 +66,10 @@ int main()
       printvalue(head);
       printf("After deleting the value \n");
     head=deletefirst(head);
+      printvalue(head);
+      int pos;
+      printf("Pleas Enter which position : ");
+      scanf("%d",&pos);
+      head=deleteatany(head,pos);
       printvalue(head);
 }
