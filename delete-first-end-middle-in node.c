@@ -26,11 +26,31 @@ struct Node *deleteatany(struct Node *head,int index)
       i++;
     }
     struct Node *q;
-    q=p->next;
-    p->next=q->next;
+    q=ptr->next;
+    ptr->next=q->next;
     free(q);
     return head;
 }
+//deleting at the end
+struct Node *deletatend(struct Node *head)
+{
+    struct Node *p,*q;
+    p=head;
+    q=head->next;
+    while (q->next!=NULL)
+    {
+        q=q->next;
+        p=p->next;
+    }
+    p->next=NULL;
+    free(q);
+    return head;
+    
+  
+
+    
+}
+
 //ptinting The value
 void printvalue(struct Node *p)
 {
@@ -70,6 +90,9 @@ int main()
       int pos;
       printf("Pleas Enter which position : ");
       scanf("%d",&pos);
+      head=deleteatany(head,pos);
+      printvalue(head);
+      printf("After deleting end elements\n");
       head=deleteatany(head,pos);
       printvalue(head);
 }
