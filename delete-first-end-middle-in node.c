@@ -5,53 +5,76 @@ struct Node
     int value;
     struct Node *next;
 };
-//deleting the first elements 
-struct Node *deletefirst(struct Node *head){
-    struct Node  *ptr;
-    ptr=head;
-    head=head->next;
+// deleting the first elements
+struct Node *deletefirst(struct Node *head)
+{
+    struct Node *ptr;
+    ptr = head;
+    head = head->next;
     free(ptr);
     return head;
 }
 
-//delete at any node you want
-struct Node *deleteatany(struct Node *head,int index)
+// delete at any node you want
+struct Node *deleteatany(struct Node *head, int index)
 {
     struct Node *ptr;
-    ptr=head;
-    int i=0;
-    while (i!=index-1)
+    ptr = head;
+    int i = 0;
+    while (i != index - 1)
     {
-      ptr=ptr->next;
-      i++;
+        ptr = ptr->next;
+        i++;
     }
     struct Node *q;
-    q=ptr->next;
-    ptr->next=q->next;
+    q = ptr->next;
+    ptr->next = q->next;
     free(q);
     return head;
 }
-//deleting at the end
+
+// delete value index
+struct Node *delatevalue(struct Node *head,int value)
+{
+    struct Node *p, *q;
+    p = head;
+    q = head->next;
+    while (q->next != NULL && q->value!=value)
+    {
+        q = q->next;
+        p = p->next;
+    }
+    if(q->value==value)
+    {
+
+    p->next = q->next;
+    free(q);
+    
+    }
+    else
+    {
+        printf("sorry we didn't found it!\n");
+    }
+    return head;
+}
+
+// deleting at the end
 struct Node *deletatend(struct Node *head)
 {
-    struct Node *p,*q;
-    p=head;
-    q=head->next;
-    while (q->next!=NULL)
+    struct Node *p, *q;
+    p = head;
+    q = head->next;
+    while (q->next != NULL)
     {
-        q=q->next;
-        p=p->next;
+        q = q->next;
+        p = p->next;
     }
-    p->next=NULL;
+    p->next = NULL;
     free(q);
     return head;
-    
-  
-
-    
 }
 
-//ptinting The value
+// ptinting The value
 void printvalue(struct Node *p)
 {
     while (p != NULL)
@@ -83,16 +106,22 @@ int main()
     // intialize fourth value
     four->value = 14;
     four->next = NULL;
-      printvalue(head);
-      printf("After deleting the value \n");
-    head=deletefirst(head);
-      printvalue(head);
-      int pos;
-      printf("Pleas Enter which position : ");
-      scanf("%d",&pos);
-      head=deleteatany(head,pos);
-      printvalue(head);
-      printf("After deleting end elements\n");
-      head=deleteatany(head,pos);
-      printvalue(head);
+    printvalue(head);
+    printf("After deleting the value \n");
+    head = deletefirst(head);
+    printvalue(head);
+    int pos;
+    printf("Pleas Enter which position : ");
+    scanf("%d", &pos);
+    head = deleteatany(head, pos);
+    printvalue(head);
+    printf("After deleting end elements\n");
+    head = deleteatany(head, pos);
+    printvalue(head);
+    int lol;
+    printf("Please Enter which value you want to delate : ");
+    scanf("%d",&lol);
+    head=delatevalue(head,lol);
+    printvalue(head);
+
 }
