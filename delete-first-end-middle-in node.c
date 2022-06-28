@@ -34,22 +34,21 @@ struct Node *deleteatany(struct Node *head, int index)
 }
 
 // delete value index
-struct Node *delatevalue(struct Node *head,int value)
+struct Node *delatevalue(struct Node *head, int value)
 {
     struct Node *p, *q;
     p = head;
     q = head->next;
-    while (q->next != NULL && q->value!=value)
+    while (q->next != NULL && q->value != value)
     {
         q = q->next;
         p = p->next;
     }
-    if(q->value==value)
+    if (q->value == value)
     {
 
-    p->next = q->next;
-    free(q);
-    
+        p->next = q->next;
+        free(q);
     }
     else
     {
@@ -120,8 +119,7 @@ int main()
     printvalue(head);
     int lol;
     printf("Please Enter which value you want to delate : ");
-    scanf("%d",&lol);
-    head=delatevalue(head,lol);
+    scanf("%d", &lol);
+    head = delatevalue(head, lol);
     printvalue(head);
-
 }
