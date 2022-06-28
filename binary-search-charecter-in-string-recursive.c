@@ -45,8 +45,9 @@ int main()
             }
         }
     }
+    int high=len-1;
 
-    pos = search(a, start, len - 1, ch);
+    pos = search(a, start, high, ch);
     if (pos == -1)
         printf("sorry! we didn't found it!");
     else
@@ -56,15 +57,20 @@ int main()
 }
 int search(char know[], int start, int highest, char want)
 {
+    
     int mid = (start + highest) / 2;
-    if (know[mid] == want)
+    if(start>highest)
+    {
+        return -1;
+    }
+    else if(know[mid] == want)
         return mid;
     else if (know[mid] < want)
-        start = mid + 1;
-    else if (know[mid] > want)
-        highest = mid - 1;
+       start=mid-1;
+    else
+        highest = mid +1;
 
-    return -1;
+  
 
     return search(know, start + 1, highest - 1, want);
 }
