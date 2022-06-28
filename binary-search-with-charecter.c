@@ -9,7 +9,7 @@ int main()
     printf("Please enter a string : ");
     gets(a);
     high = (strlen(a) - 1);
-    // this is for comparing small letter
+    // this is for comparing capital letter
     for (i = 0; i < strlen(a); i++)
     {
         for (j = i + 1; j < strlen(a); j++)
@@ -27,7 +27,7 @@ int main()
                 }
             }
 
-            // this is for comparing capital letter
+            // this is for comparing small letter
 
             if (a[j] >= 97 && a[j] <= 122)
             {
